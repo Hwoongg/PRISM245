@@ -12,19 +12,22 @@ public class UIManager : MonoBehaviour
     Transform anchor_2dMode;
 
     Transform handTf;
-    // Start is called before the first frame update
+
+    // 버튼 관리용 이중 리스트
+    // 0 : 타이틀
+    // 1 : 1차 2D 메뉴
+    // 2 : 2차 2D 메뉴
+    // 3~ : ...위와 같은 형태로 반복
+    List<List<GameObject>> buttonObjects;
+    int depth; // 현재 UI 깊이값. 이 값을 통해 활성화 될 버튼을 관리
+
+
     void Start()
     {
         anchor_3dMode = anchorGroup.GetChild(0);
         anchor_2dMode = anchorGroup.GetChild(1);
 
         handTf = FindObjectOfType<LeapServiceProvider>().transform;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     public void Open2DUI()

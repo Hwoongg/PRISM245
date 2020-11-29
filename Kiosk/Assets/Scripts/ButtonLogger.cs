@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class ButtonLogger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnLog(int _i)
     {
         Debug.Log("Press Button : " + _i.ToString());
