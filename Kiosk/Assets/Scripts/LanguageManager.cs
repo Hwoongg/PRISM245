@@ -32,6 +32,11 @@ public class LanguageManager : Singleton<LanguageManager>
         _lvar.SetLanguage(nowLanguageType);
     }
 
+    public void RemoveVariant(LanguageVariant _lvar)
+    {
+        languageVariants.Remove(_lvar);
+    }
+
     public void ChangeLanguage(LanguageType _lt)
     {
         nowLanguageType = _lt;

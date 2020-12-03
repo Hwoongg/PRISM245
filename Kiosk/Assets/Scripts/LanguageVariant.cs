@@ -57,4 +57,9 @@ public class LanguageVariant : MonoBehaviour
                 break;
         }
     }
+
+    private void OnDestroy()
+    {
+        LanguageManager.Instance().RemoveVariant(this);
+    }
 }
