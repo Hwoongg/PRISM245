@@ -2,66 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity;
+using Leap.Unity.Interaction;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] GameObject _2dgroup;
-
-    [SerializeField] Transform anchorGroup;
-    Transform anchor_3dMode;
-    Transform anchor_2dMode;
-
-    Transform handTf;
-
     // 버튼 관리용 이중 리스트
     // 0 : 타이틀
     // 1 : 1차 2D 메뉴
     // 2 : 2차 2D 메뉴
     // 3~ : ...위와 같은 형태로 반복
     List<List<GameObject>> buttonObjects;
-    int depth; // 현재 UI 깊이값. 이 값을 통해 활성화 될 버튼을 관리
-
-
-    void Start()
-    {
-        anchor_3dMode = anchorGroup.GetChild(0);
-        anchor_2dMode = anchorGroup.GetChild(1);
-
-        handTf = FindObjectOfType<LeapServiceProvider>().transform;
-    }
+    public int depth = 0; // 현재 UI 깊이값. 이 값을 통해 활성화 될 버튼을 관리
     
-    public void Open2DUI()
+    private UIManager()
     {
-        StartCoroutine(moveAndActiveRoutine(anchor_2dMode, true));
-    }
-    
-    public void Close2D()
-    {
-        StartCoroutine(moveAndActiveRoutine(anchor_3dMode, false));
+        buttonObjects = new List<List<GameObject>>();
     }
 
-    IEnumerator moveAndActiveRoutine(Transform _anchor, bool _isActive)
+    public override void Start()
     {
-        float lerpVal = 0;
+        base.Start();
+    }
 
-        while(true)
+    public void MoveUiDepth(int _depth)
+    {
+        depth = _depth;
+
+        // 모든 버튼 비활성화
+        for(int i=0; i < buttonObjects.Count; i++)
         {
-            handTf.position = Vector3.Lerp(handTf.position, _anchor.position, lerpVal);
-
-            if (lerpVal > 0.5f)
+            for(int j=0; j<buttonObjects[i].Count; j++)
             {
-                _2dgroup.SetActive(_isActive);
+                // 초기형 코드. 오브젝트 활성화 방식으로 작동 가능한지부터 체크
+                // 이후 버튼 기능 잠금으로 변경할 것
+                buttonObjects[i][j].SetActive(false);
             }
-            if (lerpVal >= 1)
-            {
-                break;
-            }
-            
-            lerpVal += Time.deltaTime * 3.0f;
-            
-            yield return null;
         }
 
-        yield break;
+        // 현재 계층의 버튼 활성화
+        for (int i = 0; i < buttonObjects[depth].Count; i++)
+        {
+            buttonObjects[depth][i].SetActive(true);
+        }
     }
+
+    public void AddButton(GameObject _go, int layer)
+    {
+        buttonObjects[layer].Add(_go);
+    }
+    
 }
