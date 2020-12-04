@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 5780128237750818767}
   - component: {fileID: 2507494357360486716}
   m_Layer: 5
-  m_Name: Contents_Interaction
+  m_Name: Contents_Paginate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
