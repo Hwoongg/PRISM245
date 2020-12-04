@@ -8,7 +8,7 @@ public class TitleManager : MonoBehaviour
 {
     //[SerializeField] GameObject _2dgroup;
 
-    [SerializeField] Transform anchorGroup;
+    [SerializeField] Transform anchorGroup = null;
     Transform anchor_3dMode;
     Transform anchor_2dMode;
 

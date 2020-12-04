@@ -17,7 +17,7 @@ public class SwipeGesture : MonoBehaviour
     Controller controller;
     List<float> mo = new List<float>();
     public GameObject cube;
-    bool DTtime = false;
+    //bool DTtime = false;
     float HandPalmPitch;
     int num = 0;
 

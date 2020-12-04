@@ -8,7 +8,7 @@ public class HandEnableUI : MonoBehaviour
     GameObject leftHand;
     GameObject rightHand;
 
-    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject canvas = null;
 
     void Start()
     {
