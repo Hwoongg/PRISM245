@@ -11,13 +11,14 @@ using UnityEngine.UI;
 // ///////////////////////////////////////////////////////
 public class LanguageVariant : MonoBehaviour
 {
-    [SerializeField] string korean = "Default Korean";
-    [SerializeField] string english = "Default English";
-    [SerializeField] string chinese = "Default Chinese";
+    public string korean = "Default Korean";
+    public string english = "Default English";
+    public string chinese = "Default Chinese";
 
     Text textUI;
     TextMesh textMesh; // 2D UI가 아닐 경우에 사용
-    
+
+    LanguageManager lm;
     void Start()
     {
         textUI = GetComponent<Text>();
@@ -27,7 +28,8 @@ public class LanguageVariant : MonoBehaviour
         }
 
         // Language Manager에 자신을 추가하며 초기화 진행
-        LanguageManager.Instance().AddList(this);
+        lm = LanguageManager.Instance();
+        lm.AddList(this);
     }
     
 
@@ -60,6 +62,6 @@ public class LanguageVariant : MonoBehaviour
 
     private void OnDestroy()
     {
-        LanguageManager.Instance().RemoveVariant(this);
+        lm.RemoveVariant(this);
     }
 }

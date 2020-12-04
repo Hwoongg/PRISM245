@@ -10,7 +10,7 @@ public class LanguageManager : Singleton<LanguageManager>
         ENGLISH,
         CHINESE
     }
-    LanguageType nowLanguageType = LanguageType.KOREAN;
+    [HideInInspector] public LanguageType nowLanguageType = LanguageType.KOREAN;
 
     List<LanguageVariant> languageVariants;
 
