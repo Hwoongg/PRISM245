@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 // ///////////////////////////////////////////////////////
 //
@@ -16,7 +16,8 @@ public class LanguageVariant : MonoBehaviour
     public string chinese = "Default Chinese";
 
     Text textUI;
-    TextMesh textMesh; // 2D UI가 아닐 경우에 사용
+    TextMeshPro textMesh; // 2D UI가 아닐 경우에 사용
+    
 
     LanguageManager lm;
     void Start()
@@ -24,7 +25,7 @@ public class LanguageVariant : MonoBehaviour
         textUI = GetComponent<Text>();
         if(textUI == null) // 2D UI가 아닐 경우
         {
-            textMesh = GetComponent<TextMesh>();
+            textMesh = GetComponent<TextMeshPro>();
         }
 
         // Language Manager에 자신을 추가하며 초기화 진행
