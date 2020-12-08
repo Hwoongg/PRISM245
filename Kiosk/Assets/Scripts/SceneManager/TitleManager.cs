@@ -56,33 +56,42 @@ public class TitleManager : MonoBehaviour
         //        nowRoutine = StartCoroutine(moveAndActiveRoutine(anchor_2dMode, true));
         //    }
         //}
-        if (!panelAnim.isPlaying)
+        if (!tempOpen)
         {
-            panelAnim.Play();
-            if (!tempOpen)
+            if (!panelAnim.isPlaying)
             {
                 UIManager.Instance().depth = 1;
-                panelAnim.clip = panelAnim.GetClip("InToDepth0");
-                tempOpen = true;
-            }
-            else
-            {
-                UIManager.Instance().depth = 0;
                 panelAnim.clip = panelAnim.GetClip("InToDepth1");
-                tempOpen = false;
+                tempOpen = true;
+
+                panelAnim.Play();
             }
         }
     }
 
     public void Close2D()
     {
-        UIManager.Instance().depth = 0;
+        //UIManager.Instance().depth = 0;
 
-        if (!isAnimating)
+        //if (!isAnimating)
+        //{
+        //    isAnimating = true;
+        //    StartCoroutine(moveAndActiveRoutine(anchor_3dMode, false));
+        //}
+
+        if (tempOpen)
         {
-            isAnimating = true;
-            StartCoroutine(moveAndActiveRoutine(anchor_3dMode, false));
+            if (!panelAnim.isPlaying)
+            {
+                UIManager.Instance().depth = 0;
+                panelAnim.clip = panelAnim.GetClip("InToDepth0");
+                tempOpen = false;
+
+                panelAnim.Play();
+            }
         }
+
+        
     }
 
     IEnumerator moveAndActiveRoutine(Transform _anchor, bool _isActive)

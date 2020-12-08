@@ -7,7 +7,7 @@ public class UI2DManager : MonoBehaviour
 {
     TitleManager tm;
 
-    Canvas[] canvasArr;
+    //Canvas[] canvasArr;
 
     [SerializeField] LanguageVariant headText;
     [SerializeField] Transform contentsGroup;
@@ -16,14 +16,14 @@ public class UI2DManager : MonoBehaviour
     {
         // 캔버스 카메라 지정 (Camera Space Canvas)
         tm = FindObjectOfType<TitleManager>();
-        canvasArr = FindObjectsOfType<Canvas>();
-        for(int i=0; i<canvasArr.Length;i++)
-        {
-            canvasArr[i].worldCamera = Camera.main;
-            canvasArr[i].planeDistance = 0.4f;
-        }
+        //canvasArr = FindObjectsOfType<Canvas>();
+        //for(int i=0; i<canvasArr.Length;i++)
+        //{
+        //    canvasArr[i].worldCamera = Camera.main;
+        //    canvasArr[i].planeDistance = 0.4f;
+        //}
 
-        InitMenu(UIManager.Instance().open2DMenuIdx);
+        //InitMenu(UIManager.Instance().open2DMenuIdx);
     }
     
     public void Close2D()
@@ -39,8 +39,11 @@ public class UI2DManager : MonoBehaviour
     }
 
     // 초기 메뉴 열기
-    void InitMenu(int idx)
+    public void InitMenu(int idx)
     {
+        if (UIManager.Instance().depth != 1)
+            return;
+
         switch(idx)
         {
             case 0: // 상호작용
@@ -71,7 +74,7 @@ public class UI2DManager : MonoBehaviour
     
     public void OpenContents(int _idx)
     {
-        for(int i=0; i<contentsGroup.childCount; i++)
+        for (int i=0; i<contentsGroup.childCount; i++)
         {
             contentsGroup.GetChild(i).gameObject.SetActive(false);
         }

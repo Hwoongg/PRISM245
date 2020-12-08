@@ -30,6 +30,7 @@ public class PageGroup : MonoBehaviour
     private void OnEnable()
     {
         pageIdx = 0;
+        SetPage();
     }
 
     void Start()
