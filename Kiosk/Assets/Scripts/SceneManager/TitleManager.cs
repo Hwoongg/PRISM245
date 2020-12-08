@@ -22,12 +22,22 @@ public class TitleManager : MonoBehaviour
 
     Coroutine nowRoutine;
 
+    [SerializeField] Animation panelAnim;
+
+    bool tempOpen = false;
+
     private void Start()
     {
         anchor_3dMode = anchorGroup.GetChild(0);
         anchor_2dMode = anchorGroup.GetChild(1);
 
         handTf = FindObjectOfType<LeapServiceProvider>().transform;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            Open2DUI();
     }
     public void ChangeLanguage(int _iVal)
     {
@@ -37,13 +47,29 @@ public class TitleManager : MonoBehaviour
 
     public void Open2DUI()
     {
-        if (myLayerNum == UIManager.Instance().depth)
+        //if (myLayerNum == UIManager.Instance().depth)
+        //{
+        //    UIManager.Instance().depth = 1;
+        //    if (!isAnimating)
+        //    {
+        //        isAnimating = true;
+        //        nowRoutine = StartCoroutine(moveAndActiveRoutine(anchor_2dMode, true));
+        //    }
+        //}
+        if (!panelAnim.isPlaying)
         {
-            UIManager.Instance().depth = 1;
-            if (!isAnimating)
+            panelAnim.Play();
+            if (!tempOpen)
             {
-                isAnimating = true;
-                nowRoutine = StartCoroutine(moveAndActiveRoutine(anchor_2dMode, true));
+                UIManager.Instance().depth = 1;
+                panelAnim.clip = panelAnim.GetClip("InToDepth0");
+                tempOpen = true;
+            }
+            else
+            {
+                UIManager.Instance().depth = 0;
+                panelAnim.clip = panelAnim.GetClip("InToDepth1");
+                tempOpen = false;
             }
         }
     }
