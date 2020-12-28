@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BlinkUI : MonoBehaviour
 {
-    Graphic[] uiGraphics;
+    [SerializeField] Graphic[] uiGraphics;
 
     float alphaVal;
     [SerializeField] float blinkSpeed = 1.0f;
@@ -29,7 +29,7 @@ public class BlinkUI : MonoBehaviour
     private void Awake()
     {
         SetupBlinkValue();
-        uiGraphics = GetComponentsInChildren<Graphic>();
+        //uiGraphics = GetComponentsInChildren<Graphic>();
         startColors = new Color[uiGraphics.Length];
         for(int i=0; i<uiGraphics.Length; i++)
         {

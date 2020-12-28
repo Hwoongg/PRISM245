@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 89331874087356981, guid: 562803a2afffe974a983828dc8937b71,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 89331874087356981, guid: 562803a2afffe974a983828dc8937b71,
         type: 3}
@@ -287,85 +287,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &859703302
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.017
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.095
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.416
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991787, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257977942991789, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: m_Name
-      value: Desktop Leap Rig
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257979324374805, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: ModelPool.Array.data[0].IsLeftToBeSpawned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976257979324374805, guid: adbcbd8025dc9cf43938caa01b2c9cab,
-        type: 3}
-      propertyPath: ModelPool.Array.data[0].IsRightToBeSpawned
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: adbcbd8025dc9cf43938caa01b2c9cab, type: 3}
 --- !u!1 &1791268733
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,5 +378,5 @@ Transform:
   m_LocalScale: {x: 1, y: 0.15755, z: 0.27558}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

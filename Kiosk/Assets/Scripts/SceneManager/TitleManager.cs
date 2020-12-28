@@ -8,11 +8,11 @@ public class TitleManager : MonoBehaviour
 {
     //[SerializeField] GameObject _2dgroup;
 
-    [SerializeField] Transform anchorGroup = null;
-    Transform anchor_3dMode;
-    Transform anchor_2dMode;
+    //[SerializeField] Transform anchorGroup = null;
+    //Transform anchor_3dMode;
+    //Transform anchor_2dMode;
 
-    Transform handTf;
+    //Transform handTf;
 
     string sceneName2D = "UI_2D";
 
@@ -24,14 +24,14 @@ public class TitleManager : MonoBehaviour
 
     [SerializeField] Animation panelAnim;
 
-    bool tempOpen = false;
+    bool isOpen2D = false;
 
     private void Start()
     {
-        anchor_3dMode = anchorGroup.GetChild(0);
-        anchor_2dMode = anchorGroup.GetChild(1);
+        //anchor_3dMode = anchorGroup.GetChild(0);
+        //anchor_2dMode = anchorGroup.GetChild(1);
 
-        handTf = FindObjectOfType<LeapServiceProvider>().transform;
+        //handTf = FindObjectOfType<LeapServiceProvider>().transform;
     }
 
     private void Update()
@@ -56,13 +56,13 @@ public class TitleManager : MonoBehaviour
         //        nowRoutine = StartCoroutine(moveAndActiveRoutine(anchor_2dMode, true));
         //    }
         //}
-        if (!tempOpen)
+        if (!isOpen2D)
         {
             if (!panelAnim.isPlaying)
             {
                 UIManager.Instance().depth = 1;
                 panelAnim.clip = panelAnim.GetClip("InToDepth1");
-                tempOpen = true;
+                isOpen2D = true;
 
                 panelAnim.Play();
             }
@@ -78,14 +78,16 @@ public class TitleManager : MonoBehaviour
         //    isAnimating = true;
         //    StartCoroutine(moveAndActiveRoutine(anchor_3dMode, false));
         //}
+        if (UIManager.Instance().depth != 1)
+            return;
 
-        if (tempOpen)
+        if (isOpen2D)
         {
             if (!panelAnim.isPlaying)
             {
                 UIManager.Instance().depth = 0;
                 panelAnim.clip = panelAnim.GetClip("InToDepth0");
-                tempOpen = false;
+                isOpen2D = false;
 
                 panelAnim.Play();
             }
@@ -94,39 +96,39 @@ public class TitleManager : MonoBehaviour
         
     }
 
-    IEnumerator moveAndActiveRoutine(Transform _anchor, bool _isActive)
-    {
-        float lerpVal = 0;
+    //IEnumerator moveAndActiveRoutine(Transform _anchor, bool _isActive)
+    //{
+    //    float lerpVal = 0;
 
-        while (true)
-        {
-            handTf.position = Vector3.Lerp(handTf.position, _anchor.position, lerpVal);
+    //    while (true)
+    //    {
+    //        handTf.position = Vector3.Lerp(handTf.position, _anchor.position, lerpVal);
 
-            if (lerpVal > 0.5f)
-            {
-                //_2dgroup.SetActive(_isActive);
-                if (_isActive)
-                {
-                    if (!SceneManager.GetSceneByName(sceneName2D).isLoaded)
-                        SceneManager.LoadScene(sceneName2D, LoadSceneMode.Additive);
-                }
-                else
-                {
-                    if (SceneManager.GetSceneByName(sceneName2D).isLoaded)
-                        SceneManager.UnloadSceneAsync(sceneName2D);
-                }
-            }
-            if (lerpVal >= 1)
-            {
-                isAnimating = false;
-                break;
-            }
+    //        if (lerpVal > 0.5f)
+    //        {
+    //            //_2dgroup.SetActive(_isActive);
+    //            if (_isActive)
+    //            {
+    //                if (!SceneManager.GetSceneByName(sceneName2D).isLoaded)
+    //                    SceneManager.LoadScene(sceneName2D, LoadSceneMode.Additive);
+    //            }
+    //            else
+    //            {
+    //                if (SceneManager.GetSceneByName(sceneName2D).isLoaded)
+    //                    SceneManager.UnloadSceneAsync(sceneName2D);
+    //            }
+    //        }
+    //        if (lerpVal >= 1)
+    //        {
+    //            isAnimating = false;
+    //            break;
+    //        }
 
-            lerpVal += Time.deltaTime * 3.0f;
+    //        lerpVal += Time.deltaTime * 3.0f;
 
-            yield return null;
-        }
+    //        yield return null;
+    //    }
 
-        yield break;
-    }
+    //    yield break;
+    //}
 }

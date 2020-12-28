@@ -22,7 +22,7 @@ namespace Leap.Unity {
   /// must enable "Allow Images" in your Leap Motion settings.
   /// </summary>
   [RequireComponent(typeof(Camera))]
-  [RequireComponent(typeof(LeapServiceProvider))]
+  //[RequireComponent(typeof(LeapServiceProvider))]
   public class LeapImageRetriever : MonoBehaviour {
     public const string GLOBAL_COLOR_SPACE_GAMMA_NAME = "_LeapGlobalColorSpaceGamma";
     public const string GLOBAL_GAMMA_CORRECTION_EXPONENT_NAME = "_LeapGlobalGammaCorrectionExponent";
@@ -244,19 +244,25 @@ namespace Leap.Unity {
     }
 #endif
 
-    private void Awake() {
-      _provider = GetComponent<LeapServiceProvider>();
-      if (_provider == null) {
-        _provider = GetComponentInChildren<LeapServiceProvider>();
-      }
+        private void Awake()
+        {
+            _provider = GetComponent<LeapServiceProvider>();
+            if (_provider == null)
+            {
+                _provider = GetComponentInChildren<LeapServiceProvider>();
+            }
+            if (_provider == null)
+            {
+                _provider = FindObjectOfType<LeapServiceProvider>();
+            }
 
-      //Enable pooling to reduce overhead of images
-      LeapInternal.MemoryManager.EnablePooling = true;
+            //Enable pooling to reduce overhead of images
+            LeapInternal.MemoryManager.EnablePooling = true;
 
-      ApplyGammaCorrectionValues();
-    }
+            ApplyGammaCorrectionValues();
+        }
 
-    private void OnEnable() {
+        private void OnEnable() {
       subscribeToService();
     }
 

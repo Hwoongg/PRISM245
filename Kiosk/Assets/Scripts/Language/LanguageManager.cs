@@ -12,11 +12,11 @@ public class LanguageManager : Singleton<LanguageManager>
     }
     [HideInInspector] public LanguageType nowLanguageType = LanguageType.KOREAN;
 
-    List<LanguageVariant> languageVariants;
+    List<ILanguageVariant> languageVariants;
 
     private void Awake()
     {
-        languageVariants = new List<LanguageVariant>();
+        languageVariants = new List<ILanguageVariant>();
     }
 
 
@@ -26,13 +26,13 @@ public class LanguageManager : Singleton<LanguageManager>
     }
     
 
-    public void AddList(LanguageVariant _lvar)
+    public void AddList(ILanguageVariant _lvar)
     {
         languageVariants.Add(_lvar);
         _lvar.SetLanguage(nowLanguageType);
     }
 
-    public void RemoveVariant(LanguageVariant _lvar)
+    public void RemoveVariant(ILanguageVariant _lvar)
     {
         languageVariants.Remove(_lvar);
     }

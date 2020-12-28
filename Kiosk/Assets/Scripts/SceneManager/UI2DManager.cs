@@ -82,4 +82,12 @@ public class UI2DManager : MonoBehaviour
         if(_idx < contentsGroup.childCount)
             contentsGroup.GetChild(_idx).gameObject.SetActive(true);
     }
+
+    public void CloseContents()
+    {
+        headText.korean = "PRISM245";
+        headText.english = "PRISM245";
+        headText.chinese = "PRISM245";
+        headText.SetLanguage(LanguageManager.Instance().nowLanguageType);
+    }
 }

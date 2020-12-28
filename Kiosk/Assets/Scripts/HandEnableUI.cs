@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity;
+using UnityEngine.UI;
 
 public class HandEnableUI : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class HandEnableUI : MonoBehaviour
 
     [SerializeField] GameObject canvas = null;
 
+    Timer closeTimer;
+
+    [SerializeField] Image handCover;
+
+    private void Awake()
+    {
+        closeTimer = new Timer(2.0f);
+    }
     void Start()
     {
         try
@@ -30,10 +39,19 @@ public class HandEnableUI : MonoBehaviour
         if(!leftHand.activeSelf && !rightHand.activeSelf)
         {
             canvas.SetActive(true);
+            Color newCollor = Color.yellow;
+            newCollor.a = 0.5f;
+            handCover.color = newCollor;
         }
         else
         {
-            canvas.SetActive(false);
+            Color newCollor = Color.green;
+            newCollor.a = 0.5f;
+            handCover.color = newCollor;
+
+            closeTimer.Update();
+            if(closeTimer.IsTimeOver())
+                canvas.SetActive(false);
         }
     }
 }

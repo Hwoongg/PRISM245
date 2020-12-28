@@ -9,20 +9,19 @@ using TMPro;
 // 국가 언어별 다른 텍스트를 출력하도록 설정하는 컴포넌트
 //
 // ///////////////////////////////////////////////////////
-public class LanguageVariant : MonoBehaviour
+public class LanguageVariant : MonoBehaviour, ILanguageVariant
 {
     public string korean = "Default Korean";
     public string english = "Default English";
     public string chinese = "Default Chinese";
 
-    Text textUI;
+    TextMeshProUGUI textUI;
     TextMeshPro textMesh; // 2D UI가 아닐 경우에 사용
-    
 
     LanguageManager lm;
-    void Start()
+    void Awake()
     {
-        textUI = GetComponent<Text>();
+        textUI = GetComponent<TextMeshProUGUI>();
         if(textUI == null) // 2D UI가 아닐 경우
         {
             textMesh = GetComponent<TextMeshPro>();

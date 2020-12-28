@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Leap.Unity.Interaction;
+using TMPro;
 
 public class PageGroup : MonoBehaviour
 {
     InteractionButton prevBtn;
     InteractionButton nextBtn;
+    TextMeshPro pageText;
 
     int pageIdx;
     int pageCount;
@@ -33,11 +35,12 @@ public class PageGroup : MonoBehaviour
         SetPage();
     }
 
-    void Start()
+    void Awake()
     {
         // Get Button Ref
         prevBtn = transform.parent.Find("Btn_PrevPage").GetComponent<InteractionButton>();
         nextBtn = transform.parent.Find("Btn_NextPage").GetComponent<InteractionButton>();
+        pageText = transform.parent.Find("Text_Page").GetComponent<TextMeshPro>();
 
         // Mapping Events...
         prevBtn.OnPress += PrevPage;
@@ -67,5 +70,13 @@ public class PageGroup : MonoBehaviour
         }
 
         transform.GetChild(pageIdx).gameObject.SetActive(true);
+
+        SetPageText();
+    }
+
+    void SetPageText()
+    {
+        int nowPage = pageIdx + 1;
+        pageText.text = nowPage.ToString() + " / " + pageCount.ToString();
     }
 }
